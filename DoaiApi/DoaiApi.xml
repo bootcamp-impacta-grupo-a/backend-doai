@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DoaiApi</name>
+    </assembly>
+    <members>
+        <member name="M:DoaiApi.Controllers.InstituicaoController.#ctor(DoaiApi.Data.InstituicaoContext,AutoMapper.IMapper)">
+            <summary>
+            Get Database objetos
+            </summary>
+        </member>
+        <member name="M:DoaiApi.Controllers.InstituicaoController.AdicionaInstituicao(DoaiApi.Data.DTOs.CreateInstituicaoDto)">
+            <summary>
+            Metodo para Adicionar uma nova institução
+            </summary>
+            <param CreateInstituicaoDto="instituicaoDto"></param>
+            <returns></returns>
+            <response code="200">Sucesso: Instituição cadastrada</response>
+            <response code="401">Erro: Usuario nao autenticado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.InstituicaoController.RecuperaInstituicoes">
+            <summary>
+            Metodo traz uma lista de instuições
+            </summary>
+            <response code="200">Sucesso: Retorna lista</response>
+            <response code="401">Erro: Usuario nao autenticado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.InstituicaoController.RecuperaInstituicaoPorId(System.Int32)">
+            <summary>
+            Metodo para retornar uma institução por seu id
+            </summary>
+            <param int="id"></param>
+            <returns></returns>
+            <response code="200">Sucesso: Instituição cadastrada</response>
+            <response code="401">Erro: Usuario nao autenticado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.NotaFiscalController.#ctor(DoaiApi.Data.InstituicaoContext)">
+            <summary>
+            Get Database objetos
+            </summary>
+        </member>
+        <member name="M:DoaiApi.Controllers.NotaFiscalController.RetornoArquivo(System.Int32)">
+            <summary>
+            Retorna um arquivo.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="200">Sucesso: Arquivo retornado</response>
+            <response code="400">Erro: Arquivo não retornado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.NotaFiscalController.UploadArquivoAsync(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Método para upload do arquivo
+            </summary>
+            <param name="formData"></param>
+            <returns></returns>
+            <response code="201">Sucesso: Arquivo salvo</response>
+            <response code="400">Erro: Falha ao enviar arquivo</response>
+            <response code="401">Erro: Usuário não autenticado ou não autorizado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.UsuarioController.NovoUsuario(DoaiApi.Data.DTOs.UsuarioDTO)">
+            <summary>
+            Metodo para Adicionar um novo usuário
+            </summary>
+            <param UsuarioDTO="usuarioDTO"></param>
+            <returns></returns>
+            <response code="200">Sucesso: Usuario cadastrado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.UsuarioController.AutenticaUsuario(System.String,System.String)">
+            <summary>
+            Metodo para autenticacao do usuario, necessario para consumir os demais metodos disponiveis.
+            </summary>
+            <param Usuario="usuario"></param>
+            <returns></returns>
+            <response code="200">Sucesso: Usuario autenticado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.UsuarioController.UsuarioAutenticado">
+            <summary>
+            Metodo para verificar usuario autenticado.
+            </summary>
+        </member>
+        <member name="T:DoaiApi.Services.TokenService">
+             <summary>
+            Classe responsável pela geração do token
+             </summary>
+        </member>
+    </members>
+</doc>

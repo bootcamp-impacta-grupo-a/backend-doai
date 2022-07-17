@@ -9,6 +9,8 @@ namespace DoaiApi.Profiles
         public InstituicaoProfile()
         {
             CreateMap<CreateInstituicaoDto, Instituicao>();
+            CreateMap<UsuarioDTO, Usuario>();
+
         }
     }
 }

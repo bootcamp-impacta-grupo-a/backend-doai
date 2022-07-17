@@ -12,5 +12,8 @@ namespace DoaiApi.Data
         }
 
         public DbSet<Instituicao> Instituicoes { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<NotaFiscal> NotaFiscal { get; set; }
+
     }
 }
