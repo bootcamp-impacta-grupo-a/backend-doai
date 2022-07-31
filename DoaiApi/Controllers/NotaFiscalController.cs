@@ -67,7 +67,7 @@ namespace DoaiApi.Controllers
             if (idInstituicao == 0)
                 return NotFound(new { message = "Informe o id da instituição" });
 
-            var NotasFiscais = _context.NotaFiscal.Where(a => a.InstituicaoId == idInstituicao).Select(a => new {a.Id, a.FileName, a.DataEnvio }).ToList();
+            var NotasFiscais = _context.NotaFiscal.Where(a => a.InstituicaoId == idInstituicao).Select(a => new {a.Id, a.FileName, a.DataEnvio, Usuario = new { a.Usuario.Id, a.Usuario.Nome } }).ToList();
 
             return Ok(NotasFiscais);
         }
@@ -86,7 +86,7 @@ namespace DoaiApi.Controllers
         {
             int idUsuario = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
 
-            var NotasFiscais = _context.NotaFiscal.Where(a => a.UsuarioId == idUsuario).Select(a => new { a.Id, a.FileName, a.DataEnvio }).ToList();
+            var NotasFiscais = _context.NotaFiscal.Where(a => a.UsuarioId == idUsuario).Select(a => new { a.Id, a.FileName, a.DataEnvio, Instituicao = new { a.Instituicao.Id, a.Instituicao.Nome } }).ToList();
 
             return Ok(NotasFiscais);
         }
