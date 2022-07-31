@@ -20,5 +20,12 @@ namespace DoaiApi.Models
 
         [Required]
         public byte[] ArrayBytes { get; set; }
+
+        public DateTime DataEnvio { get; set; }
+
+        public int InstituicaoId { get; set; }
+        public virtual Instituicao Instituicao { get; set; }
+        public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

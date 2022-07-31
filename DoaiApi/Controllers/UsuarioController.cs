@@ -56,9 +56,9 @@ namespace DoaiApi.Controllers
         [HttpPost]
         [Route("Autenticacao")]
         [AllowAnonymous]
-        public ActionResult<dynamic> AutenticaUsuario(string Login, string Senha)
+        public ActionResult<dynamic> AutenticaUsuario([FromBody] UsuarioLogin usuarioLogin)
         {
-            Usuario usuario = _context.Usuario.FirstOrDefault(c => c.Login == Login && c.Senha == Senha);
+            Usuario usuario = _context.Usuario.FirstOrDefault(c => c.Login == usuarioLogin.Login && c.Senha == usuarioLogin.Senha);
 
             if (usuario == null)
                 return NotFound(new { message = "Usuário ou senha inválidos" });

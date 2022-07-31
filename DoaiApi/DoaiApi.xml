@@ -48,11 +48,31 @@
             <response code="200">Sucesso: Arquivo retornado</response>
             <response code="400">Erro: Arquivo não retornado</response>
         </member>
-        <member name="M:DoaiApi.Controllers.NotaFiscalController.UploadArquivoAsync(Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:DoaiApi.Controllers.NotaFiscalController.RetornaNotasByInstituicao(System.Int32)">
             <summary>
-            Método para upload do arquivo
+            Método para retorno de notas, por instituição
             </summary>
-            <param name="formData"></param>
+            <param name="idInstituicao"></param>
+            <returns></returns>
+            <response code="201">Sucesso: Arquivo salvo</response>
+            <response code="400">Erro: Falha ao enviar arquivo</response>
+            <response code="401">Erro: Usuário não autenticado ou não autorizado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.NotaFiscalController.RetornaNotasByUsuario">
+            <summary>
+            Método para retorno de notas, por usuario logado
+            </summary>
+            <returns></returns>
+            <response code="201">Sucesso: Arquivo salvo</response>
+            <response code="400">Erro: Falha ao enviar arquivo</response>
+            <response code="401">Erro: Usuário não autenticado ou não autorizado</response>
+        </member>
+        <member name="M:DoaiApi.Controllers.NotaFiscalController.UploadArquivoAsync(System.Int32,System.Collections.Generic.List{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+            Método para upload de notas
+            </summary>
+            <param name="idInstituicao"></param>
+            <param name="formDatalist"></param>
             <returns></returns>
             <response code="201">Sucesso: Arquivo salvo</response>
             <response code="400">Erro: Falha ao enviar arquivo</response>
@@ -66,7 +86,7 @@
             <returns></returns>
             <response code="200">Sucesso: Usuario cadastrado</response>
         </member>
-        <member name="M:DoaiApi.Controllers.UsuarioController.AutenticaUsuario(System.String,System.String)">
+        <member name="M:DoaiApi.Controllers.UsuarioController.AutenticaUsuario(DoaiApi.Models.UsuarioLogin)">
             <summary>
             Metodo para autenticacao do usuario, necessario para consumir os demais metodos disponiveis.
             </summary>

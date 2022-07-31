@@ -61,19 +61,32 @@ namespace DoaiApi.Migrations
 
                     b.Property<byte[]>("ArrayBytes")
                         .IsRequired()
-                        .HasColumnType("longblob");
+                        .HasColumnType("varbinary(4000)");
 
                     b.Property<string>("ContentType")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
+                    b.Property<DateTime>("DataEnvio")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("FileName")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
+                    b.Property<int>("InstituicaoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("InstituicaoId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("NotaFiscal");
                 });
@@ -102,6 +115,25 @@ namespace DoaiApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("DoaiApi.Models.NotaFiscal", b =>
+                {
+                    b.HasOne("DoaiApi.Models.Instituicao", "Instituicao")
+                        .WithMany()
+                        .HasForeignKey("InstituicaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DoaiApi.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instituicao");
+
+                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
