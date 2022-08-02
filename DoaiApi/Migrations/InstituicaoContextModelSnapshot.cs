@@ -61,7 +61,7 @@ namespace DoaiApi.Migrations
 
                     b.Property<byte[]>("ArrayBytes")
                         .IsRequired()
-                        .HasColumnType("varbinary(4000)");
+                        .HasColumnType("longblob");
 
                     b.Property<string>("ContentType")
                         .IsRequired()

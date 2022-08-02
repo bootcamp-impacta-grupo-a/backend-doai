@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoaiApi.Migrations
 {
     [DbContext(typeof(InstituicaoContext))]
-    [Migration("20220717231444_NotaFiscalMigration")]
-    partial class NotaFiscalMigration
+    [Migration("20220802231343_BaseDoai")]
+    partial class BaseDoai
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,12 +70,25 @@ namespace DoaiApi.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
+                    b.Property<DateTime>("DataEnvio")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("FileName")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
+                    b.Property<int>("InstituicaoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("InstituicaoId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("NotaFiscal");
                 });
@@ -104,6 +117,25 @@ namespace DoaiApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("DoaiApi.Models.NotaFiscal", b =>
+                {
+                    b.HasOne("DoaiApi.Models.Instituicao", "Instituicao")
+                        .WithMany()
+                        .HasForeignKey("InstituicaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DoaiApi.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instituicao");
+
+                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
