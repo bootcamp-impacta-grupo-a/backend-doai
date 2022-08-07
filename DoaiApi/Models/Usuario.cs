@@ -9,15 +9,15 @@ namespace DoaiApi.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O campo Nome é obrigatório")]
-        [StringLength(200, ErrorMessage = "Limite de 200 caracteres")]
+        [StringLength(300, ErrorMessage = "Limite de 300 caracteres")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "O campo Senha é obrigatório")]
-        [StringLength(30, ErrorMessage = "Limite de 30 caracteres")]
+        [StringLength(250)]
         public string Senha { get; set; }
 
         [Required(ErrorMessage = "O campo Login é obrigatório")]
-        [StringLength(200, ErrorMessage = "Limite de 200 caracteres")]
+        [StringLength(300, ErrorMessage = "Limite de 300 caracteres")]
         public string Login { get; set; }
 
     }

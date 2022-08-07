@@ -31,9 +31,9 @@ namespace DoaiApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
-                    Senha = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
-                    Login = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                    Nome = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
+                    Senha = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false),
+                    Login = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false)
                 },
                 constraints: table =>
                 {

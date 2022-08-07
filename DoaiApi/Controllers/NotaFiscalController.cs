@@ -1,5 +1,6 @@
 ﻿using DoaiApi.Data;
 using DoaiApi.Models;
+using DoaiApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -67,7 +68,7 @@ namespace DoaiApi.Controllers
             if (idInstituicao == 0)
                 return NotFound(new { message = "Informe o id da instituição" });
 
-            var NotasFiscais = _context.NotaFiscal.Where(a => a.InstituicaoId == idInstituicao).Select(a => new {a.Id, a.FileName, a.DataEnvio, Usuario = new { a.Usuario.Id, a.Usuario.Nome } }).ToList();
+            var NotasFiscais = _context.NotaFiscal.Where(a => a.InstituicaoId == idInstituicao).Select(a => new {a.Id, a.FileName, a.DataEnvio, Usuario = new { a.Usuario.Id, Nome = CryptService.DecryptString_Aes(a.Usuario.Nome) } }).ToList();
 
             return Ok(NotasFiscais);
         }

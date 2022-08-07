@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace DoaiApi.Controllers
 {
@@ -16,7 +17,6 @@ namespace DoaiApi.Controllers
     {
         private InstituicaoContext _context;
         private IMapper _mapper;
-
 
         public UsuarioController(InstituicaoContext context, IMapper mapper)
         {
@@ -35,12 +35,17 @@ namespace DoaiApi.Controllers
         [AllowAnonymous]
         public IActionResult NovoUsuario([FromBody] UsuarioDTO usuarioDTO)
         {
+
             Usuario usuario = _mapper.Map<Usuario>(usuarioDTO);
 
-            if (_context.Usuario.Where(c => c.Login == usuario.Login).Count() > 0)
+            if (_context.Usuario.Where(c => c.Login == CryptService.EncryptString_Aes(usuario.Login)).Count() > 0)
             {
                 return Ok(new { message = "Login não disponivel para cadastro" });
             }
+
+            usuario.Nome = CryptService.EncryptString_Aes(usuario.Nome);
+            usuario.Login = CryptService.EncryptString_Aes(usuario.Login);
+            usuario.Senha = CryptService.GetHash(usuario.Senha);
 
             _context.Usuario.Add(usuario);
             _context.SaveChanges();
@@ -58,7 +63,8 @@ namespace DoaiApi.Controllers
         [AllowAnonymous]
         public ActionResult<dynamic> AutenticaUsuario([FromBody] UsuarioLogin usuarioLogin)
         {
-            Usuario usuario = _context.Usuario.FirstOrDefault(c => c.Login == usuarioLogin.Login && c.Senha == usuarioLogin.Senha);
+
+            Usuario usuario = _context.Usuario.FirstOrDefault(c => c.Login == CryptService.EncryptString_Aes(usuarioLogin.Login) && c.Senha == CryptService.GetHash(usuarioLogin.Senha) );
 
             if (usuario == null)
                 return NotFound(new { message = "Usuário ou senha inválidos" });

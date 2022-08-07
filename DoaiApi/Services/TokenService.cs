@@ -20,7 +20,7 @@ namespace DoaiApi.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.Nome),
+                    new Claim(ClaimTypes.Name, CryptService.DecryptString_Aes(usuario.Nome)),
                     new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoaiApi.Migrations
 {
     [DbContext(typeof(InstituicaoContext))]
-    [Migration("20220802231343_BaseDoai")]
+    [Migration("20220807182305_BaseDoai")]
     partial class BaseDoai
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,18 +101,18 @@ namespace DoaiApi.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
+                        .HasMaxLength(250)
+                        .HasColumnType("varchar(250)");
 
                     b.HasKey("Id");
 
