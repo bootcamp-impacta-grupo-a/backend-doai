@@ -12,7 +12,7 @@ namespace DoaiApi.Data.DTOs
         [StringLength(50, ErrorMessage = "Razão Social não pode exceder 50 caracteres")]
         public string RazaoSocial { get; set; }
         [Required(ErrorMessage = "O campo CNPJ é obrigatório")]
-        [StringLength(14, ErrorMessage = "CNPJ não pode exceder 14 caracteres")]
+        [StringLength(20, ErrorMessage = "CNPJ não pode exceder 20 caracteres")]
         public string Cnpj { get; set; }
         [Required(ErrorMessage = "O campo Estado é obrigatório")]
         [StringLength(2, ErrorMessage = "Estado não pode exceder 2 caracteres")]
@@ -20,5 +20,8 @@ namespace DoaiApi.Data.DTOs
         [Required(ErrorMessage = "O campo Cidade é obrigatório")]
         [StringLength(25, ErrorMessage = "Cidade não pode exceder 25 caracteres")]
         public string Cidade { get; set; }
+        [Required(ErrorMessage = "O campo Descricao é obrigatório")]
+        [StringLength(500, ErrorMessage = "Descricao não pode exceder 500 caracteres")]
+        public string Descricao { get; set; }
     }
 }

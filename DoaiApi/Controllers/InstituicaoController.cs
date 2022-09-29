@@ -34,7 +34,6 @@ namespace DoaiApi.Controllers
         /// <response code="200">Sucesso: Instituição cadastrada</response>
         /// <response code="401">Erro: Usuario nao autenticado</response>
         [HttpPost]
-        [Authorize]
         public IActionResult AdicionaInstituicao([FromBody] CreateInstituicaoDto instituicaoDto)
         {
             Instituicao instituicao = _mapper.Map<Instituicao>(instituicaoDto);

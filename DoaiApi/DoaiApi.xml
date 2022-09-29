@@ -67,7 +67,7 @@
             <response code="400">Erro: Falha ao enviar arquivo</response>
             <response code="401">Erro: Usuário não autenticado ou não autorizado</response>
         </member>
-        <member name="M:DoaiApi.Controllers.NotaFiscalController.UploadArquivoAsync(System.Int32,System.Collections.Generic.List{Microsoft.AspNetCore.Http.IFormFile})">
+        <member name="M:DoaiApi.Controllers.NotaFiscalController.UploadArquivoAsync(System.Int32,System.Int32,System.Collections.Generic.List{Microsoft.AspNetCore.Http.IFormFile})">
             <summary>
             Método para upload de notas
             </summary>

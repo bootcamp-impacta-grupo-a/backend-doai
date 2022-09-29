@@ -16,9 +16,10 @@ namespace DoaiApi.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     RazaoSocial = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Cnpj = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
+                    Cnpj = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
                     Estado = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: false),
-                    Cidade = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false)
+                    Cidade = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,7 +52,7 @@ namespace DoaiApi.Migrations
                     ArrayBytes = table.Column<byte[]>(type: "longblob", nullable: false),
                     DataEnvio = table.Column<DateTime>(type: "datetime", nullable: false),
                     InstituicaoId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    UsuarioId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,12 +63,6 @@ namespace DoaiApi.Migrations
                         principalTable: "Instituicoes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_NotaFiscal_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuario",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -75,10 +70,6 @@ namespace DoaiApi.Migrations
                 table: "NotaFiscal",
                 column: "InstituicaoId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_NotaFiscal_UsuarioId",
-                table: "NotaFiscal",
-                column: "UsuarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

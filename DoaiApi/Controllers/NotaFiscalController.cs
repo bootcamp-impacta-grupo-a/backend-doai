@@ -35,9 +35,9 @@ namespace DoaiApi.Controllers
         /// <response code="200">Sucesso: Arquivo retornado</response>
         /// <response code="400">Erro: Arquivo não retornado</response>
         [HttpGet]
-        [Route("RetornaNota")]
+        [Route("RetornaNota/{id}")]
         [AllowAnonymous]
-        public IActionResult RetornoArquivo(int id)
+        public IActionResult RetornoArquivo([FromRoute]int id)
         {
 
             NotaFiscal arquivoRetorno = _context.NotaFiscal.FirstOrDefault(c => c.Id == id);
@@ -103,14 +103,14 @@ namespace DoaiApi.Controllers
         /// <response code="401">Erro: Usuário não autenticado ou não autorizado</response>
         [HttpPost]
         [Route("UploadNotas")]
-        [Authorize]
-        public async Task<ActionResult<dynamic>> UploadArquivoAsync(int idInstituicao, List<IFormFile> formDatalist)
+        public async Task<ActionResult<dynamic>> UploadArquivoAsync(int idInstituicao, int idUsuario, List<IFormFile> formDatalist)
         {
             if (formDatalist.Count() == 0)
                 return NotFound(new { message = "Faça o upload do arquivo" });
 
             if (_context.Instituicoes.Where(a => a.Id == idInstituicao).Count() == 0 || idInstituicao == 0)
                 return NotFound(new { message = "Insituição não encontrada ou id igual a zero." });
+
 
             List<NotaFiscal> notasFiscais = new();
 
@@ -132,7 +132,7 @@ namespace DoaiApi.Controllers
                         ArrayBytes = BytesArquivo,
                         InstituicaoId = idInstituicao,
                         DataEnvio = DateTime.Now,
-                        UsuarioId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value)
+                        UsuarioId = idUsuario
                     };
 
                     _context.NotaFiscal.Add(nota);
