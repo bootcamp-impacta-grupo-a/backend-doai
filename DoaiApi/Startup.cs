@@ -38,7 +38,7 @@ namespace DoaiApi
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
-                    Description = "Caso necessite de Autenticação, informar o Bearer",
+                    Description = "Caso necessite de AutenticaÃ§Ã£o, informar o Bearer",
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey
                 });
@@ -109,7 +109,7 @@ namespace DoaiApi
 
 
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
