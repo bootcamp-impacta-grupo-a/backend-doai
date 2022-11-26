@@ -60,7 +60,7 @@ namespace DoaiApi.Controllers
         /// <response code="400">Erro: Falha ao enviar arquivo</response>
         /// <response code="401">Erro: Usuário não autenticado ou não autorizado</response>
         [HttpGet]
-        [Route("RetornaNotasInstituicao/{idInstituicao}")]
+        [Route("RetornaNotasInstituicao")]
         [AllowAnonymous]
         public IActionResult RetornaNotasByInstituicao (int idInstituicao)
         {
